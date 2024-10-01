@@ -1,0 +1,164 @@
+/* Global styling */
+* {
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+/* Body background */
+body {
+    background-color: #f0f8ff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Card styling */
+.card {
+    width: 90%;
+    max-width: 470px;
+    background: linear-gradient(100deg, #00feba, #5b548a);
+    color: #fff;
+    margin: 100px auto;
+    border-radius: 20px;
+    padding: 40px 35px;
+    text-align: center;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2); 
+    margin-top: -10px;
+}
+
+/* Search container */
+.search {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+/* Search input */
+.search input {
+    border: 0;
+    outline: 0;
+    background: #ebfffc;
+    color: #555;
+    padding: 10px 25px;
+    height: 60px;
+    border-radius: 30px;
+    font-size: 18px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    flex-grow: 1; /* Låt inputen ta upp all plats */
+    text-transform:capitalize;
+}
+
+/* Search button (sökikonen) */
+.search button {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.search button img {
+    width: 100%; 
+    height: auto;
+}
+h1{
+    text-align: center;
+}
+/* Weather icon */
+.weather-icon {
+    width: 170px;
+    margin-top: 30px;
+}
+
+/* Temperature styling */
+.weather h1 {
+    font-size: 80px;
+    font-weight: 500;
+    margin: 10px 0;
+}
+
+/* City name */
+.weather h2 {
+    font-size: 45px;
+    font-weight: 400;
+    margin-top: -10px;
+}
+
+/* Weather details section */
+.details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    padding: 0 20px;
+    margin-top: 50px;
+}
+
+/* Column styling */
+.col {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+/* Icons inside details */
+.col img {
+    width: 40px; 
+    margin-right: 10px;
+}
+
+/* Humidity and wind text */
+.humidity, .wind {
+    font-size: 20px;
+    white-space: nowrap;
+    text-align: left; 
+}
+
+.details .col .wind,
+.details .col .humidity {
+    display: flex;
+    align-items: center;
+}
+
+/* För att förhindra att vind- och fuktighetstexten överlappar */
+.col span {
+    display: block;
+}
+
+/* Forecast container */
+
+.forecast-day {
+    padding: 15px;
+    border-radius: 10px;
+    margin: 10px 0;
+    color: #fff; /* Vit textfärg */
+    transition: background-color 0.3s ease; /* Övergång för hover-effekt */
+}  
+#forecast{
+    display: inline;
+
+}
+  
+.forecast-day:hover{
+    background: color #3c333c;
+}
+.forecast-day .date {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.forecast-day .temp {
+    font-size: 1.1em;
+}
+
+.forecast-day .precipitation {
+    font-size: 1em;
+    margin-top: 5px;
+}

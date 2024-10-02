@@ -162,3 +162,7 @@ h1{
     font-size: 1em;
     margin-top: 5px;
 }
+footer a{
+    text-align: center;
+    margin-top: -10px;
+}

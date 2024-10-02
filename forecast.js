@@ -8,13 +8,43 @@ async function getCoordinates(cityName) {
         if (data.length > 0) {
             const { lat, lon } = data[0];
             fetchWeather(lat, lon, cityName); 
+        
         } else {
-            alert("coud not find city name.");
+            alert("not found 404.");
         }
     } catch (error) {
         alert("an error occured when u fetching geocoordinate.");
     }
 }
+
+
+function storedCityToLocalStorage(cityName) {
+    const cities = JSON.parse(localStorage.getItem("favoriteCities")) ||[];
+    if (!cities.includes(cityName)) {
+        cities.push(cityName);
+      localStorage.setItem(
+        "favoriteCities",
+        JSON.stringify(cities)
+      );
+    } 
+    diplayFavoriteCites();
+  } 
+
+  function diplayFavoriteCites(){
+    const cities= JSON.parse(localStorage.getItem("favoriteCities")) || [];
+    favoriteCities.innerHTML="";
+    cities.forEach((city) => {
+        const cityElement = document.createElement("span");
+        cityElement.textContent = city;
+        cityElement.classList.add("favorite-city");
+        cityElement.style.cursor = "pointer";
+        cityElement.style.display = "block";
+        cityElement.addEventListener("click", () => getCoordinates(city)); 
+        favoriteCities.appendChild(cityElement);
+  
+  });
+}
+
 
 
 function fetchWeather(lat, lon, cityName) {
@@ -36,6 +66,9 @@ function fetchWeather(lat, lon, cityName) {
             
             forecastContainer.innerHTML = '';
             forecastContainer.innerHTML += `<h3>7-dagars prognos för ${cityName}</h3>`;
+
+            storedCityToLocalStorage(cityName);
+            cityInput.value="none";
 
             // Loop genom datan och skapa en prognosvisning
             for (let i = 0; i < dates.length; i++) {
@@ -90,4 +123,5 @@ document.getElementById("searchButton").addEventListener("click", () => {
     } else {
         alert("Ange ett stadens namn.");
     }
+    diplayFavoriteCites();
 });

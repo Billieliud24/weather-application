@@ -15,7 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
       );
     } 
     diplayFavoriteCites();
-  }
+  } 
+
   function diplayFavoriteCites(){
     const cities= JSON.parse(localStorage.getItem("favoriteCities")) || [];
     favoriteCities.innerHTML="";
@@ -25,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cityElement.classList.add("favorite-city");
         cityElement.style.cursor = "pointer";
         cityElement.style.display = "block";
-        cityElement.addEventListener("click", () => fetchCoordinates(city)); // Klickbar stad
+        cityElement.addEventListener("click", () => fetchCoordinates(city)); 
         favoriteCities.appendChild(cityElement);
   
   });
@@ -41,8 +42,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (data.current_weather) {
         displayWeather(data.current_weather, cityName);
         storedCityToLocalStorage(cityName);
+        searchInput.value="";
       } else {
-        showError("Could not get weather data.");
+        showError("weather data not available for this city.");
       }
     } catch (error) {
         console.error("error ocured:",error)
@@ -81,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
   function showError(message) {
-    alert(message);
+    alert(message)
   }
 
   async function fetchCoordinates(cityName) {
@@ -93,11 +95,17 @@ document.addEventListener("DOMContentLoaded", () => {
       const response = await fetch(nominatimUrl);
       const data = await response.json();
 
-      if (data.length > 0) {
+      if (data && data.length > 0) {
         const { lat, lon } = data[0];
-        getWeather(lat, lon, cityName);
+        if(lat &&lon){
+            getWeather(lat, lon, cityName);
+           
+        }else{
+            showError("invalid coordinates")
+        }
+      
       } else {
-        showError("City not found.");
+        showError("City not found (404)");
       }
     } catch (error) {
       showError("An error occurred while fetching city coordinates.");
@@ -113,5 +121,6 @@ document.addEventListener("DOMContentLoaded", () => {
         showError("Please enter a city name.");
       }
     });
-  } 
+  } diplayFavoriteCites();
+    
 })
